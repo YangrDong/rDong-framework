@@ -35,7 +35,17 @@ public class ResourceResolver {
         this.basePackage = basePackage;
     }
 
+    //Function<Resource, R> 是一个函数式接口，表示接受一个 Resource 类型的参数，并返回一个 R 类型的结果。
+    //<R>：这是一个泛型类型参数。它表示方法内部使用的类型 R 是在调用该方法时确定的。
+
+    /**
+     * 获取包路径下所有的类
+     * @param mapper
+     * @return
+     * @param <R>
+     */
     public <R> List<R> scan(Function<Resource, R> mapper) {
+        //获取包路径 将com.package换成com/package
         String basePackagePath = this.basePackage.replace(".", "/");
         String path = basePackagePath;
         try {
